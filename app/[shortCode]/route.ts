@@ -20,6 +20,7 @@ export async function GET(
     if (!record) {
       return NextResponse.redirect(new URL("/404", req.url));
     }
+    //3. If found → increment clicks and redirect
     await prisma.urlShortener.update({
       where: { shortUrl: shortCode },
       data: {
@@ -28,7 +29,7 @@ export async function GET(
         },
       },
     });
-    // 3. Redirect to original URL
+    // 4. Redirect to original URL
     return NextResponse.redirect(record.original, 307);
   } catch (error) {
     console.error("Redirect error:", error);
