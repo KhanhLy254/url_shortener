@@ -12,9 +12,6 @@ function normalizeUrl(url: string): string {
   return parsed.toString().replace(/\/$/, "");
 }
 
-/**
- * Validate URL format
- */
 function isValidUrl(url: string): boolean {
   try {
     new URL(url);
@@ -46,14 +43,10 @@ export async function POST(req: NextRequest) {
     }
     const baseUrl = process.env.BASE_URL ?? "http://localhost:3000";
 
-    /**
-     * ⚠️ DÙNG findFirst để tránh lỗi schema @unique
-     */
     const existing = await prisma.urlShortener.findFirst({
       where: { original: url },
     });
 
-    // 4. Nếu đã tồn tại
     if (existing) {
       return NextResponse.json({
         shortUrl: `${baseUrl}/${existing.shortUrl}`,
@@ -62,15 +55,12 @@ export async function POST(req: NextRequest) {
       });
     }
 
-    /**
-     * 5. Transaction (fix type tx)
-     */
     const result = await prisma.$transaction(
       async (tx: Prisma.TransactionClient) => {
         const created = await tx.urlShortener.create({
           data: {
             original: url,
-            shortUrl: crypto.randomUUID(), // placeholder
+            shortUrl: crypto.randomUUID(), 
           },
         });
 
