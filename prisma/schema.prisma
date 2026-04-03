@@ -1,0 +1,26 @@
+generator client {
+  provider = "prisma-client-js"
+  
+}
+
+datasource db {
+  provider  = "postgresql"
+}
+model UrlShortener {
+  id         Int    @id @default(autoincrement())
+  original   String @unique
+  shortUrl   String   @unique
+  clicks     Int      @default(0)
+  createdAt  DateTime @default(now())
+  clickLogs  ClickLog[]
+}
+model ClickLog {
+  id         String   @id @default(uuid())
+  urlId      Int
+  ip         String
+  userAgent  String
+  createdAt  DateTime @default(now())
+
+  // relation
+  url        UrlShortener @relation(fields: [urlId], references: [id])
+}
