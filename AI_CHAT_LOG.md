@@ -5,9 +5,9 @@
     - Efficient length: With just 6 Base62 characters, you can generate over 56 billion unique combinations (62^6).
     - Guaranteed uniqueness: By encoding an auto-incrementing database ID, each URL gets a unique short code without the risk of collisions.
 
-2. I am building a URL shortener using Next.js (App Router) and Prisma. Please provide a TypeScript implementation of a Base62 encoding utility to convert a unique database ID into a short string.
-
 ----- 
+
+2. I am building a URL shortener using Next.js (App Router) and Prisma. Please provide a TypeScript implementation of a Base62 encoding utility to convert a unique database ID into a short string.
 
 - What the AI generated
 const BASE62_CHARS =
@@ -24,20 +24,18 @@ export function encodeBase62(num: number): string {
   return result;
 }
 
------
-
 - The reason why I accepted as-is
     - Base62 character set: Uses the standard 62 characters (0–9, a–z, A–Z), ensuring correct and consistent encoding.
     - Encoding logic: Uses modulo (% 62) and division → the correct and efficient way to convert to Base62.
     - Edge case (num = 0): Prevents returning an empty string, ensuring a valid result.
+
+-----
 
 3. I am building a URL Shortener project using Next.js (App Router) and Prisma. Please help me create the shortenUrl API route with the following requirements:
 - Database Integration: Use Prisma to store the original URL and the generated short code.
 - Validate if the input is a legitimate URL.
 - Check if the URL already exists in the database to avoid duplicates.
 - Error Handling: Include proper try-catch blocks and return appropriate HTTP status codes (e.g., 200 for success, 400 for bad requests, 500 for server errors).
-
------
 
 What the AI generated
 
@@ -122,7 +120,6 @@ export async function POST(req: NextRequest) {
   }
 }
 
------
 
 The specific changes I made
 - URL Normalization
@@ -142,6 +139,9 @@ The specific changes I made
     - In the AI-generated code: The response returns both shortUrl and original, which can be considered redundant or unnecessary for this endpoint.
     - Reason: Both approaches work, but my implementation is more efficient by returning only the essential data needed by the client.
 
+
+-----
+
 3. I need you to design and code a modern, clean UI for my URL Shortener application using Next.js, Tailwind CSS, and Lucide React (for icons).
 Requirements:
 - Hero Section: A catchy title (e.g., 'Shorten Your Long Links') and a brief description.
@@ -153,7 +153,6 @@ Requirements:
 - Styling: Use a clean, 'SaaS-style' aesthetic (white/slate background, primary indigo or blue buttons, rounded corners, and soft shadows).
 Please provide the code for a single-page component (page.tsx) that integrates these elements.
 
------
 
 What the AI generated
 
@@ -361,7 +360,6 @@ export default function HomePage() {
   );
 }
 
------
 
 The reason why I accepted as-is
 - This page is designed to maintain a clean, modern, and user-friendly interface:
@@ -372,6 +370,8 @@ The reason why I accepted as-is
 Overall, the UI is intentionally kept simple and clean to enhance usability and provide a smooth user experience.
 Simple navigation: Provides an easy way to return to the homepage when a link is not found.
 
+-----
+
 4. Now, I need to implement the redirection logic for my URL Shortener in Next.js (App Router).
 Goal: When a user visits /[shortCode], the application should look up the original URL in the Prisma database and redirect the user.
 Requirements:
@@ -379,8 +379,6 @@ Requirements:
 - Redirection: If the link exists, use redirect() to send the user to the original destination.
 - If the link does not exist, show a clean '404 - Link Not Found' page or redirect back to the home page with an error message.
 Please provide the code.
-
------
 
 What the AI generated
 
@@ -414,7 +412,6 @@ export async function GET(
   return NextResponse.redirect(record.original)
 }
 
------
 
 The specific changes I made
 - Error Handling Strategy
@@ -430,6 +427,8 @@ The specific changes I made
     - In the AI-generated code: Updates using id (primary key), which is more optimal at the database level but not aligned with your current routing logic.
     - Reason: While using id is generally more performant and standard practice, using shortUrl ensures consistency across my API (especially with the stats route).
 
+-----
+
 5. I am building a URL Shortener project using Next.js (App Router). I want to create a header with two navigation options:
 - UrlShortener → navigates to the homepage (app/page.tsx)
 - Analytics → navigates to a second page
@@ -444,7 +443,6 @@ For the Analytics page, please design and implement a clean UI with the followin
     - Show the result in a clear and visually distinct section (e.g., card or box)
 - Use Tailwind CSS for styling (or the existing styling system in the project)
 
------
 
 What the AI generated
 
@@ -516,7 +514,6 @@ export default function AnalyticsPage() {
   );
 }
 
------
 
 The reason why I accepted as-is
 - The file is already correctly implemented and works as expected, so no modifications are necessary.
