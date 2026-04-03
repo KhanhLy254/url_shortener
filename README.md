@@ -78,7 +78,7 @@
 	```
 - **Response:**
 	```json
-	{ "shortUrl": "https://domain.com/abc123" }
+	{ "shortUrl": "http://localhost:3000/1" }
 	```
 
 ### 2. Redirect Short URL
@@ -122,7 +122,7 @@
 
 ### 1. Clone the repository
 ```bash
-git clone https://github.com/your-username/url_shortener.git
+git clone https://github.com/KhanhLy254/url_shortener.git
 cd url_shortener
 ```
 
@@ -154,5 +154,5 @@ npm run dev
 
 ---
 
-**For questions or contributions, please open an issue or pull request!**
+
 
